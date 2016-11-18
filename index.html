@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>reveal.js</h1>
+					<h3>by Kelly Furness</h3>
+					<p>What I will cover:</p>
+					<ul>
+						<li class="fragment">What is it?</li>
+						<li class="fragment">Set-Up</li>
+						<li class="fragment">Transitions</li>
+						<li class="fragment">Inner Code Tricks</li>
+						<li class="fragment">Background Images</li>
+						<li class="fragment">Sound</li>
+						<li class="fragment">Why would I use this vs Google Slides?</li>
+					</ul>
+				</section>
+
+        <section>
+          <h3>What you start out with</h3>
+  				<section>Slide 1</section>
+
+  				<section>Slide 2</section>
+
+          <section>
+            <h4>First Step: Update Reveal.initialize</h4>
+            <pre><code data-noescape>
+Reveal.initialize({
+  <mark>history: true,</mark>
+  controls: true,
+  slideNumber: true,
+  progress: true,
+  center: true,
+  keyboard: true,
+  shuffle: false,
+	showNotes: false,
+  //https://www.sitepoint.com/creating-slick-html-presentations-using-reveal-js/
+  // default/cube/page/concave/zoom/linear/fade/none
+  transition: Reveal.getQueryHash().transition || 'zoom',
+            </code></pre>
+          </section>
+
+          <section>
+            <h4>First Step: Update Reveal.initialize cont.</h4>
+            <pre><code data-noescape>
+dependencies: [
+	<mark>{ src: 'plugin/markdown/marked.js' },
+	{ src: 'plugin/markdown/markdown.js' },
+	{ src: 'plugin/notes/notes.js', async: true },
+	{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },</mark>
+  { src: 'plugin/math/math.js', async: true },
+  { src: 'plugin/notes/notes.js', async: true },
+  { src: 'plugin/zoom-js/zoom.js', async: true }
+]
+});
+            </code></pre>
+          </section>
+					<section>
+						<h2>Tally</h2>
+						<p class="fragment">
+							Google slides gets 1 point for making the set up so easy.
+						</p>
+						<p class="fragment">
+							reveal.js: 0 <br />
+							Google Slides: 1
+						</p>
+					</section>
+      </section>
+
+      <section>
+        <h3>Transitions</h3>
+        <p>Either change in initialize or change in section element</p>
+        <h4>cube</h4>
+      </section>
+      <section data-transition="cube" data-transition-speed="slow">
+        <h4>page</h4>
+        <img src="./images/corgi.jpeg"/>
+      </section>
+      <section data-transition="page" data-transition-speed="slow">
+        <h4>concave</h4>
+        <img src="./images/cat.jpeg"/>
+      </section>
+      <section data-transition="concave" data-transition-speed="slow">
+        <h4>zoom</h4>
+        <img src="./images/dog.jpeg"/>
+      </section>
+      <section data-transition="zoom" data-transition-speed="slow">
+        <h4>linear</h4>
+        <img src="./images/cat2.jpeg"/>
+      </section>
+      <section data-transition="linear" data-transition-speed="slow">
+        <h4>fade</h4>
+        <img src="./images/dog2.jpg"/>
+      </section>
+      <section data-transition="fade" data-transition-speed="slow">
+        <h4>none</h4>
+        <img src="./images/cat3.jpeg"/>
+      </section>
+      <section data-transition="none" data-transition-speed="slow">
+        <img src="./images/pizza.jpg"/>
+				<h2>Tally</h2>
+				<p class="fragment">
+					Google slides gets 1 point for not being a pain in the ass to include transitions that are sub-par.
+				</p>
+				<p class="fragment">
+					reveal.js: 0 <br />
+					Google Slides: 2
+				</p>
+      </section>
+
+      <section>
+        <h3>Inner Code</h3>
+				<p>Line 143</p>
+				<p>"data-trim" "data-noescape" "contenteditable"</p>
+        <pre><code data-trim data-noescape contenteditable>
+export default class TonightsPlan extends React.Component {
+  render () {
+    var fiftyFifty = Math.random() < 0.5;
+    var reactConfidence = fiftyFifty ? 'make more react
+	apps' : 'to drink myself to sleep while crying and in
+	fetal position';
+      return (
+        &lt;h1&gt;Tonight I am going to {place} WOOO&lt;/h1&gt;
+      );
+  }
+}
+        </code></pre>
+      </section>
+
+      <section>
+        <h3>Inner HTML Code</h3>
+				<p>line 153</p>
+        <p><a href="http://www.accessify.com/tools-and-wizards/developer-tools/quick-escape/default.php" target="_blank">Accessify Quick Escape</a></p>
+        <pre><code data-trim data-noescape>
+          &lt;h1&gt;Hello&lt;/h1&gt;
+<br>          &lt;mark&gt;&lt;p&gt;Please pay attention to me!&lt;/p&gt;&lt;/mark&gt;
+<br>          &lt;blockquote&gt;
+<br>            And everyone using Google Slides
+<br>            wondered why anyone would use reveal.js. And
+<br>            everyone who used reveal.js thought the same
+<br>            of the Google Sliderians.
+<br>          &lt;/blockquote&gt;
+        </code></pre>
+			</section>
+
+			<section>
+				<h2>Tally</h2>
+				<p class="fragment">
+					reveal.js gets 1 point for being able to include code chunks. <br />
+					 reveal.js also gets 1 point taken away since code chunks are tricky tricky.
+				</p>
+				<p class="fragment">
+					reveal.js: 0 <br />
+					Google Slides: 2
+				</p>
+      </section>
+
+			<section data-background="./images/sad-tomato.jpeg" style="background-size: contain">
+				<h3 style="color: black; background:rgba(255,255,255, 0.6); width: 400px; margin:auto">Background Images</h3>
+				<p style="color: black; background:rgba(255,255,255, 0.6); width: 400px; margin:auto">Use "data-background" attribute <br />
+					line 181
+				</p>
+			</section>
+
+			<section data-background="./images/sad-tomato.jpeg" data-background-size="900px">
+				<h3 style="color: black; background:rgba(255,255,255, 0.8); width: 850px; margin:auto">Background Images</h3>
+				<p style="color: black; background:rgba(255,255,255, 0.8); width: 850px; margin:auto">
+				If you want to change the size, use the "data-background-size = 'width size'" attribute that defines the width<br />
+					line 188</p>
+			</section>
+
+			<section data-background="./images/sad-tomato.jpeg" data-background-repeat="repeat" data-background-size="300px">
+				<h3 style="color: black; background:rgba(255,255,255, 0.8); width: 850px; margin:auto">Background Images</h3>
+				<p style="color: black; background:rgba(255,255,255, 0.8); width: 850px; margin:auto">
+				If you want to change repeat the image, use the "data-background-repeat = 'repeat'" attribute<br />
+					line 195</p>
+			</section>
+
+			<section>
+				<h2>Tally</h2>
+				<p class="fragment">
+					Adding images in reveal.js is kind of a pain. I just want to copy and paste. <br />
+					 Google slides gets 2 points for making adding any kind of image easy. 1 point for vanilla images, 1 point for background <br />
+				</p>
+				<p class="fragment">
+					reveal.js: 0 <br />
+					Google Slides: 4
+				</p>
+      </section>
+
+			<section>
+				<h3>Sound</h3>
+				<p>line 214 <br />
+					"data-autoplay" & "loop" & "controls"</p>
+				<img src="./images/elephant.jpg" style="display:block; margin:auto" />
+				<audio src="./media/elephant8.mp3" data-autoplay  controls></audio>
+			</section>
+
+			<section>
+				<h2>Tally</h2>
+				<p class="fragment">
+					reveal.js gets 1 point since it did a brilliant job of playing animal sounds! <br />
+					I don't know how to add sound to Google Slides, so boo on them.
+				</p>
+				<p class="fragment">
+					reveal.js: 1 <br />
+					Google Slides: 4
+				</p>
+			</section>
+
+			<section>
+				<h2>Why use reveal.js vs Google Slides?</h2>
+				<p>
+					Because you can use JavaScript and do cool stuff like this...
+				</p>
+			</section>
+
+			<section id="edm">
+				<h3>Sound</h3>
+				<img src="./images/hacker_edm.jpg" style="display:block; margin:auto" class="danceParty" />
+				<audio src="./media/sandstorm1.mp3" controls data-autoplay></audio>
+				<p>Can use "data-autoplay" attribute to continue to play throughout entire presentation. <br />
+				And if hearing Sandstorm once was not enough, you can use the "loop" attribute.</p>
+			</section>
+
+			<section>
+				<h2>Final Score</h2>
+				<p class="fragment">
+					reveal.js gets 532 points for creating a rave. <br />
+					Google slides get -4 points for never making anyone dance.
+				</p>
+				<p class="fragment">
+					reveal.js: 533 <br />
+					Google Slides: 0
+				</p>
+			</section>
+
+			<section>
+				<h2>Cool Extra Features</h2>
+				<p>
+					'esc' key shows whole layout
+				</p>
+				<p>
+					Presenter's view
+				</p>
+				<ul>
+					<li>Use "aside" tag</li>
+					<li>View pushing 's' key</li>
+					<li>"showNotes: true" in setup</li>
+				</ul>
+			</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="./jquery-3.1.1.min.js"></script>
+		<script src="js/index.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+        controls: true,
+        slideNumber: true,
+        progress: true,
+        center: true,
+        keyboard: true,
+        showNotes: true,
+        shuffle: false,
+        //https://www.sitepoint.com/creating-slick-html-presentations-using-reveal-js/
+        // default/cube/page/concave/zoom/linear/fade/none
+        transition: Reveal.getQueryHash().transition || 'default',
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/math/math.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/zoom-js/zoom.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
